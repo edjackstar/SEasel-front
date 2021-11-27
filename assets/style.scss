@@ -1,0 +1,49 @@
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import "~element-ui/packages/theme-chalk/src/index";
+
+.default-top-margin {
+  margin-top: 16px;
+}
+
+.default-bottom-divider {
+  padding-bottom: 16px;
+  border-bottom: $--border-base;
+}
+
+.default-left-margin {
+  margin-left: 16px;
+}
+
+.default-horizontal-margin {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.default-form-width {
+  width: 560px;
+}
+
+.title {
+  font-size: 18px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.title-left {
+  font-size: 18px;
+  text-align: left;
+  font-weight: bold;
+}
+
+* {
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+}
+
+body{
+  margin: 0px;
+}
+
+a {
+  text-decoration: none;
+}

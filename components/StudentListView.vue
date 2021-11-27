@@ -2,20 +2,20 @@
   <div>
     <el-table
       v-if="students!=null"
-      :data="devicesOnPage"
+      :data="students"
       @row-click="selectStudent"
       size="mini">
-      <el-table-column prop="name" :label="$t('admin_device_list_label_name')">
+      <el-table-column prop="name" :label="$t('students_list_name_label')" align="right">
         <template v-slot="i">
           {{ students[i.$index].name }}
         </template>
       </el-table-column>
-      <el-table-column prop="semester" :label="$t('admin_device_list_label_name')">
+      <el-table-column prop="semester" :label="$t('students_list_semester_label')" align="center">
         <template v-slot="i">
           {{ students[i.$index].semester }}
         </template>
       </el-table-column>
-      <el-table-column prop="instrument" :label="$t('admin_device_list_label_name')">
+      <el-table-column prop="instrument" :label="$t('students_list_instrument_label')" align="left">
         <template v-slot="i">
           {{ students[i.$index].instrument }}
         </template>
@@ -35,8 +35,9 @@ export default class StudentListView extends Vue {
   @Prop({type: [], required: true})
   students!: StudentApiModel[]
 
-  selectStudent(row: number, _column: number, _event: any){
-    this.$router.replace(this.localePath(`/student/${row}`))
+  selectStudent(row: any, _column: number, _event: any){
+    console.log(row)
+    this.$router.replace(this.localePath(`/student/${row.studentId}`))
   }
 
 }

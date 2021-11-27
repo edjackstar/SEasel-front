@@ -22,7 +22,7 @@ export default {
     const body: RefreshTokenFormModel = {
       refresh: refreshToken
     }
-    return await (await axios.post('/auth/teacher/login/refresh/', body)).data 
+    return (await axios.post('/auth/teacher/login/refresh/', body)).data as AccessTokenApiModel
   }
   
 }

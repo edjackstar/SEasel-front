@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nuxt style="min-height: calc(100vh - 60px);" />
+    <nuxt style="min-height: calc(100vh - 68px);" />
     <footer-view />
   </div>
 </template>
@@ -12,7 +12,6 @@ import {mapState} from "vuex";
 import FooterView from "~/components/FooterView.vue"
 
 @Component({
-  computed: mapState('auth', ['user']),
   components: {
     FooterView
   },

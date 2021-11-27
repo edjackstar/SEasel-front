@@ -24,12 +24,15 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    'element-ui/lib/theme-chalk/index.css'
+    'element-ui/lib/theme-chalk/index.css',
+    '~/assets/style.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@/plugins/element-ui',
+    '@/plugins/axios',
+    '@/plugins/api.ts',
     '@/utils/store-accessor'
   ],
 
@@ -71,7 +74,7 @@ export default {
 
   proxy: {
     '/auth': 'https://seasel.herokuapp.com/',
-    '/api': 'https://seasel.herokuapp.com/'
+    '/api/': 'https://seasel.herokuapp.com/'
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

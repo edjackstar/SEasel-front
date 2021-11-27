@@ -1,11 +1,21 @@
 <template>
   <div>
-    <el-menu
-      mode = "vertical"
-      class="el-menu-vertical-demo">
-      <el-menu-item :index="localePath('/')">{{ $t('menu_home') }}</el-menu-item>
-    </el-menu>
-    <nuxt style="min-height: calc(100vh - 60px);" />
+    <el-container>
+      <el-aside>
+        <el-menu mode = "vertical">
+          <el-menu-item :index="localePath('/admin/music_schools')">{{ $t('menu_music_schools') }}</el-menu-item>
+          <el-menu-item :index="localePath('/admin/us ers')">{{ $t('menu_users') }}</el-menu-item>
+          <el-menu-item :index="localePath('/admin/concerts')">{{ $t('menu_concerts') }}</el-menu-item>
+          <el-menu-item :index="localePath('/admin/semester')">{{ $t('menu_semesters') }}</el-menu-item>
+          <el-menu-item :index="localePath('/admin/instruments')">{{ $t('menu_instruments') }}</el-menu-item>
+          <el-menu-item :index="localePath('/admin/compositions')">{{ $t('menu_compositions') }}</el-menu-item>
+          <el-menu-item :index="localePath('/admin/courses')">{{ $t('menu_courses') }}</el-menu-item>
+        </el-menu>
+      </el-aside>
+      <el-container style="">
+        <nuxt style="min-height: calc(100vh - 68px); width: 100%" />
+      </el-container>
+    </el-container>
     <footer-view />
   </div>
 </template>
@@ -17,16 +27,19 @@ import {mapState} from "vuex";
 import FooterView from "~/components/FooterView.vue"
 
 @Component({
-  computed: mapState('auth', ['user']),
   components: {
     FooterView
   },
-  middleware: 'pages'
+  middleware: 'admin'
 })
 export default class DefaultLayout extends Vue {
 }
 </script>
 
 <style scoped>
+  .el-menu-vertical-demo:not(.el-menu--collapse) {
+    width: 200px;
+    min-height: 400px;
+  }
 
 </style>
