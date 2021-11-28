@@ -19,7 +19,7 @@
           </el-option>
         </el-select>
         <div style="display: flex; justify-content: space-around;">
-          <el-button type="primary" class="default-top-margin">
+          <el-button type="primary" class="default-top-margin" @click="onSubmitButtonClick">
             {{$t('concerts_add_button')}}
           </el-button>
         </div>
@@ -49,7 +49,7 @@ export default class StudentPage extends Vue{
   user: UserApiModel | null = null
   concerts: ConcertApiModel[] = []
   spareConcerts: ConcertApiModel[] = []
-  selectedConcert: string = ''
+  selectedConcert: number = 0
   showPopover = false
 
   async mounted(){
@@ -75,7 +75,7 @@ export default class StudentPage extends Vue{
   async onSubmitButtonClick(){
     this.showPopover = false;
     try{
-      this.$api.user.setStudentConcert(parseInt(this.$route.params.studentId),parseInt(this.selectedConcert))
+      this.$api.user.setStudentConcert(parseInt(this.$route.params.studentId),this.selectedConcert)
     }catch(e){
     }
 

@@ -75,7 +75,7 @@ export default class LoginPage extends Vue {
     if (this.loginLoading) return
     try {
       this.loginLoading = true
-      let auth = await api.login("loh@log.com", '123123123asd')
+      let auth = await api.login(this.loginForm.email, this.loginForm.password)
       console.log(auth)
       
       this.setAccessToken(auth.access)

@@ -11,7 +11,7 @@ export default {
       email: email,
       password: password,
     }
-    return (await axios.post('/auth/teacher/login/', body)).data as TokenApiModel
+    return (await axios.post('/auth/login/', body)).data as TokenApiModel
   },
 
   async logout() {
@@ -22,7 +22,7 @@ export default {
     const body: RefreshTokenFormModel = {
       refresh: refreshToken
     }
-    return (await axios.post('/auth/teacher/login/refresh/', body)).data as AccessTokenApiModel
+    return (await axios.post('/auth/login/refresh/', body)).data as AccessTokenApiModel
   }
   
 }

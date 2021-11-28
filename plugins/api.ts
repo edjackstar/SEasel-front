@@ -119,7 +119,7 @@ export default (ctx:any, inject:any) => {
         const body = {
           concertId: selectedConcert
         }
-        await $axios.post(`/api/student/${studentId}/recomend/`, body)
+        await $axios.post(`/api/student/${studentId}/recommend/`, body)
       },
       async getComposition(compositionId: number): Promise<CompositionApiModel> {
         return (await $axios.get(`/api/compositions/${compositionId}/`)).data

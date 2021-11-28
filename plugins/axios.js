@@ -17,7 +17,7 @@ export default ({$axios, store})=>{
             case 403: {
                 if(!originalRequest._retry){
                     originalRequest._retry = true;
-                    const res = await $axios.post('/auth/teacher/login/refresh/', {refresh: store.getters['user/getRefreshToken']})
+                    const res = await $axios.post('/auth/login/refresh/', {refresh: store.getters['user/getRefreshToken']})
                     store.commit('user/setAccessToken', res.data.access)
                     originalRequest.headers['Authorization'] = `Bearer ${res.data.access}`
                     return $axios.request(originalRequest)
