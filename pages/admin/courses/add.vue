@@ -120,7 +120,6 @@ export default class StudentPage extends Vue{
   loading = false
 
   async mounted(){
-    this.course = await this.$api.admin.course.getCourse(+this.$route.params.id)
     try{
       this.instruments = await this.$api.admin.instrument.getInstrumentList()
       this.teachers = (await this.$api.admin.user.getUserList()).filter((it)=>{return it.role=='TEACHER'})
