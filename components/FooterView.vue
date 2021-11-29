@@ -16,6 +16,17 @@
           </el-link>
         </nuxt-link>
         |
+        <nuxt-link :to="switchLocalePath('uk')">
+          <el-link v-if="isLocaleBool('uk')" style="margin-left: 4px; margin-right: 4px;" type="primary">
+            <b>
+              uk
+            </b>
+          </el-link>
+          <el-link v-else style="margin-left: 4px; margin-right: 4px;" type="primary">
+            uk
+          </el-link>
+        </nuxt-link>
+        |
         <nuxt-link :to="switchLocalePath('ru')">
           <el-link v-if="isLocaleBool('ru')" style="margin-left: 4px;" type="primary">
             <b>
