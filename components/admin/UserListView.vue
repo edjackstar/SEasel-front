@@ -54,6 +54,7 @@ export default class UserListView extends Vue {
 
   onRemoveClick(userId: number){
     this.$api.admin.user.removeUser(userId)
+    this.$emit('delete')
   }
 
 }

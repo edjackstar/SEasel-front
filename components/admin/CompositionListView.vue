@@ -54,6 +54,7 @@ export default class SemesterListView extends Vue {
 
   onRemoveClick(id: number){
     this.$api.admin.composition.removeComposition(id)
+    this.$emit('delete')
   }
 
 }

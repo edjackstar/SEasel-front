@@ -45,7 +45,7 @@ export default class FooterView extends Vue {
   logout(){
     this.setAccessToken(null)
     this.setRefreshToken(null)
-    this.$router.replace("/login")
+    this.$router.replace(this.localePath("/login"))
   }
 
   isLocaleBool (locale:string):boolean {

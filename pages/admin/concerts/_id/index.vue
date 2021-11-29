@@ -72,7 +72,7 @@ export default class StudentPage extends Vue{
     try {
       this.loading = true
       await this.$api.admin.concert.updateConcert(concert)
-      this.$router.push('/admin/concerts')
+      this.$router.push(this.localePath('/admin/concerts'))
     } catch (e) {
       this.$message({
         message: this.$t('edit_concert_error').toString(),

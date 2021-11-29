@@ -53,7 +53,7 @@ export default class EditMusicSchoolPage extends Vue{
     try {
       this.loading = true
       await this.$api.admin.instrument.updateInstrument(instrument)
-      this.$router.push('/admin/instruments')
+      this.$router.push(this.localePath('/admin/instruments'))
     } catch (e) {
       this.$message({
         message: this.$t('edit_instrument_error').toString(),

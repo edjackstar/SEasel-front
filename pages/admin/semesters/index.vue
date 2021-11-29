@@ -3,9 +3,9 @@
     <div class='title default-top-margin'>
       {{$t('semester_list_title')}}
     </div>
-    <semester-list-view :semesters="semesters" class="default-top-margin"/>
+    <semester-list-view :semesters="semesters" class="default-top-margin" @delete="updateSemesters" />
     <div class="default-top-margin default-right-margin" style="display: flex; justify-content: flex-end;">
-      <el-button type="primary" @click="$router.push('/admin/semesters/add')" >
+      <el-button type="primary" @click="$router.push(localePath('/admin/semesters/add'))" >
         {{$t('semester_list_add_btn')}}
       </el-button>
     </div>
@@ -28,6 +28,10 @@ export default class ConcertPage extends Vue{
   semesters: SemesterApiModel[] = []
 
   async mounted(){
+    this.updateSemesters()
+  }
+
+  async updateSemesters(){
     try{
       this.semesters = await this.$api.admin.semester.getSemesterList()
     }catch(e){

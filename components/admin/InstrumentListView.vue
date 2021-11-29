@@ -39,6 +39,7 @@ export default class InstrumentListView extends Vue {
 
   onRemoveClick(id: number){
     this.$api.admin.instrument.removeInstrument(id)
+    this.$emit('delete')
   }
 
 }

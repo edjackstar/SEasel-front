@@ -49,7 +49,7 @@ export default class AddMusicSchoolPage extends Vue{
     try {
       this.loading = true
       await this.$api.admin.musicSchool.addMusicSchool(musicSchool)
-      this.$router.push('/admin/music_schools')
+      this.$router.push(this.localePath('/admin/music_schools'))
     } catch (e) {
       this.$message({
         message: this.$t('add_music_school_error').toString(),

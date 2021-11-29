@@ -54,6 +54,7 @@ export default class ConcertListView extends Vue {
 
   onRemoveClick(courseId: number){
     this.$api.admin.course.removeCourse(courseId)
+    this.$emit('delete')
   }
 
 }

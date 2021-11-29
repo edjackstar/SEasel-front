@@ -104,7 +104,7 @@ export default class AddUserPage extends Vue{
     try {
       this.loading = true
       await this.$api.admin.user.addUser(user, this.password, this.password2)
-      this.$router.push('/admin/users')
+      this.$router.push(this.localePath('/admin/users'))
     } catch (e) {
       this.$message({
         message: this.$t('add_user_error').toString(),

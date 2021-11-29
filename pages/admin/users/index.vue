@@ -3,9 +3,9 @@
     <div class='title default-top-margin'>
       {{$t('user_list_title')}}
     </div>
-    <user-list-view :users="users" class="default-top-margin"/>
+    <user-list-view :users="users" class="default-top-margin" @delete="updateUsers"/>
     <div class="default-top-margin default-right-margin" style="display: flex; justify-content: flex-end;">
-      <el-button type="primary" @click="$router.push('/admin/users/add')" >
+      <el-button type="primary" @click="$router.push(localePath('/admin/users/add'))" >
         {{$t('user_list_add_btn')}}
       </el-button>
     </div>
@@ -28,6 +28,10 @@ export default class UserPage extends Vue{
   users: UserApiModel[] = []
 
   async mounted(){
+    this.updateUsers()
+  }
+
+  async updateUsers(){
     try{
       this.users = await this.$api.admin.user.getUserList()
     }catch(e){

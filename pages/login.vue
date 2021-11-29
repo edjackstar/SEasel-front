@@ -80,7 +80,7 @@ export default class LoginPage extends Vue {
       
       this.setAccessToken(auth.access)
       this.setRefreshToken(auth.refresh)
-      this.$router.replace('/')
+      this.$router.replace(this.localePath('/'))
     } catch (e) {
       this.$message({
         message: this.$t('login_error').toString(),

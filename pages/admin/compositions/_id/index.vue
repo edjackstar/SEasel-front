@@ -80,7 +80,7 @@ export default class StudentPage extends Vue{
     try {
       this.loading = true
       await this.$api.admin.composition.updateComposition(composition)
-      this.$router.push('/admin/compositions')
+      this.$router.push(this.localePath('/admin/compositions'))
     } catch (e) {
       this.$message({
         message: this.$t('edit_composition_error').toString(),

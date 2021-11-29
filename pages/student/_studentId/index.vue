@@ -15,7 +15,7 @@
           <el-option
             v-for="concert in spareConcerts"
             :key="concert.concertId"
-            :label="concert.date"
+            :label="getDate(concert.date)"
             :value="concert.concertId">
           </el-option>
         </el-select>
@@ -37,6 +37,7 @@
 import { Vue, Component } from 'nuxt-property-decorator'
 import ConcertListView from '~/components/ConcertListView.vue'
 import ConcertApiModel from '~/model/api/ConcertApiModel'
+import moment from 'moment';
 import UserApiModel from '~/model/api/UserApiModel'
 
 @Component({
@@ -62,6 +63,10 @@ export default class StudentPage extends Vue{
     }catch(e){
       
     }
+  }
+
+  getDate(date: string): string{
+    return moment(date).format('DD.MM.yyyy HH:MM')
   }
 
   async onAddButtonClick(){

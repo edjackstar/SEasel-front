@@ -105,7 +105,7 @@ export default class EditUserPage extends Vue{
     try {
       this.loading = true
       await this.$api.admin.user.updateUser(user, this.password, this.password2)
-      this.$router.push('/admin/users')
+      this.$router.push(this.localePath('/admin/users'))
     } catch (e) {
       this.$message({
         message: this.$t('edit_user_error').toString(),

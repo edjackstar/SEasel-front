@@ -3,9 +3,9 @@
     <div class='title default-top-margin'>
       {{$t('composition_list_title')}}
     </div>
-    <composition-list-view :compositions="compositions" class="default-top-margin"/>
+    <composition-list-view :compositions="compositions" class="default-top-margin" @delete="updateCompositions" />
     <div class="default-top-margin default-right-margin" style="display: flex; justify-content: flex-end;">
-      <el-button type="primary" @click="$router.push('/admin/compositions/add')" >
+      <el-button type="primary" @click="$router.push(localePath('/admin/compositions/add'))" >
         {{$t('composition_list_add_btn')}}
       </el-button>
     </div>
@@ -27,7 +27,11 @@ export default class ConcertPage extends Vue{
 
   compositions: CompositionApiModel[] = []
 
-  async mounted(){
+  mounted(){
+    this.updateCompositions()
+  }
+
+  async updateCompositions(){
     try{
       this.compositions = await this.$api.admin.composition.getCompositionList()
     }catch(e){

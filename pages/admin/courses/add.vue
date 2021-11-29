@@ -137,7 +137,7 @@ export default class StudentPage extends Vue{
     try {
       this.loading = true
       await this.$api.admin.course.addCourse(course)
-      this.$router.push('/admin/course')
+      this.$router.push(this.localePath('/admin/course'))
     } catch (e) {
       this.$message({
         message: this.$t('add_course_error').toString(),

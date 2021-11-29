@@ -39,6 +39,7 @@ export default class MusicSchoolListView extends Vue {
 
   onRemoveClick(musicSchoolId: number){
     this.$api.admin.musicSchool.removeMusicSchool(musicSchoolId)
+    this.$emit('delete')
   }
 
 }
