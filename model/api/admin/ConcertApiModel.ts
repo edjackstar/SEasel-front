@@ -1,5 +1,7 @@
+import MusicSchoolApiModel from "./MusicSchoolApiModel";
+
 export default interface ConcertApiModel {
-    name: string;
+    music_school: MusicSchoolApiModel;
     date: string;
-    id: number;
+    id: number | null;
 }

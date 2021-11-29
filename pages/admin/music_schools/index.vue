@@ -4,6 +4,11 @@
       {{$t('music_school_list_title')}}
     </div>
     <music-school-list-view :musicSchools="musicSchools" class="default-top-margin"/>
+    <div class="default-top-margin default-right-margin" style="display: flex; justify-content: flex-end;">
+      <el-button type="primary" @click="$router.push('/admin/music_schools/add')" >
+        {{$t('music_school_list_add_btn')}}
+      </el-button>
+    </div>
   </div>
 </template>
 
@@ -18,7 +23,7 @@ import MusicSchoolApiModel from '~/model/api/admin/MusicSchoolApiModel'
     MusicSchoolListView
   }
 })
-export default class StudentPage extends Vue{
+export default class MusicSchoolPage extends Vue{
 
   musicSchools: MusicSchoolApiModel[] = []
 

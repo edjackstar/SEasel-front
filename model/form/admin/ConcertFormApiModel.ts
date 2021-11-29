@@ -1,4 +1,4 @@
 export default interface ConcertFormApiModel {
-    name: string;
+    music_school: number | null;
     date: string;
 }

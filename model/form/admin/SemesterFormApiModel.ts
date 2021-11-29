@@ -1,9 +1,9 @@
 import MusicSchoolApiModel from "./MusicSchoolFormApiModel";
 
 export default interface SemesterFormApiModel {
-    musicSchool: number;
+    music_school: number | null;
     number: number;
-    count: number;
-    minDifficult: number;
-    maxDifficult: number;
+    composition_count: number;
+    min_difficulty: number;
+    max_difficulty: number;
 }

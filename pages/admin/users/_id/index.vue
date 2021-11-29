@@ -5,12 +5,18 @@
       class="default-top-margin default-form-width default-left-margin"
       :model="user"
       size="mini"
-      label-width="80px">
+      label-width="140px">
       <el-form-item prop="name" :label="$t('edit_user_label_name')">
         <el-input v-model="user.name" />
       </el-form-item>
       <el-form-item prop="email" :label="$t('edit_user_label_email')">
         <el-input v-model="user.email" />
+      </el-form-item>
+      <el-form-item prop="password" :label="$t('add_user_label_password')" >
+        <el-input v-model="password" show-password/>
+      </el-form-item>
+      <el-form-item prop="password2" :label="$t('add_user_label_password2')" >
+        <el-input v-model="password2" show-password/>
       </el-form-item>
       <el-form-item prop="role" :label="$t('edit_user_label_name')">
         <el-select v-model="user.role">
@@ -28,13 +34,13 @@
             />
         </el-select>
       </el-form-item>
-      <el-form-item prop="role" :label="$t('edit_user_label_name')">
-        <el-select v-model="user.school">
+      <el-form-item prop="music_school" :label="$t('edit_user_label_music_school')">
+        <el-select v-model="user.music_school.id">
           <el-option
             v-for="musicSchool in musicSchools"
             :key="musicSchool.id"
             :label="musicSchool.name"
-            :value="musicSchool" 
+            :value="musicSchool.id" 
             />
         </el-select>
       </el-form-item>
@@ -60,7 +66,7 @@ import MusicSchoolApiModel from '~/model/api/admin/MusicSchoolApiModel'
 @Component({
   layout: 'admin'
 })
-export default class StudentPage extends Vue{
+export default class EditUserPage extends Vue{
 
   @Ref('editMusicSchoolFormRef')
   editMusicSchoolFormRef!: ElForm
@@ -72,16 +78,19 @@ export default class StudentPage extends Vue{
     name: '',
     email: '',
     role: 'TEACHER',
-    musicSchool: {
+    music_school: {
       name: '',
-      id: 0
+      id: null
     },
-    id: 0
+    id: +this.$route.params.id
   }
+
+  password: string = ''
+  password2: string = ''
   loading = false
 
   async mounted(){
-    this.user = await this.$api.admin.user.getUser(+this.$route.query.id)
+    this.user = await this.$api.admin.user.getUser(+this.$route.params.id)
     try{
       this.musicSchools = await this.$api.admin.musicSchool.getMusicSchoolList()
     }catch(e){
@@ -95,14 +104,15 @@ export default class StudentPage extends Vue{
 
     try {
       this.loading = true
-      await this.$api.admin.user.updateUser(user)
+      await this.$api.admin.user.updateUser(user, this.password, this.password2)
+      this.$router.push('/admin/users')
     } catch (e) {
       this.$message({
         message: this.$t('edit_user_error').toString(),
         type: 'error'
       })
     } finally {
-      this.loading = true
+      this.loading = false
     }
   }
 }

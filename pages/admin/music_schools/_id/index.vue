@@ -5,7 +5,7 @@
       class="default-top-margin default-form-width default-left-margin"
       :model="musicSchool"
       size="mini"
-      label-width="80px">
+      label-width="140px">
       <el-form-item prop="name" :label="$t('edit_music_school_label_name')">
         <el-input v-model="musicSchool.name" />
       </el-form-item>
@@ -30,20 +30,20 @@ import MusicSchoolApiModel from '~/model/api/admin/MusicSchoolApiModel'
 @Component({
   layout: 'admin'
 })
-export default class StudentPage extends Vue{
+export default class EditMusicSchoolPage extends Vue{
 
   @Ref('editMusicSchoolFormRef')
   editMusicSchoolFormRef!: ElForm
   
   musicSchool:MusicSchoolApiModel = {
     name: '',
-    id: 0
+    id: +this.$route.params.id
   }
   
   loading = false
 
   async mounted(){
-    this.musicSchool = await this.$api.admin.musicSchool.getMusicSchool(+this.$route.query.id)
+    this.musicSchool = await this.$api.admin.musicSchool.getMusicSchool(+this.$route.params.id)
   }
 
   async submit() {
@@ -53,13 +53,14 @@ export default class StudentPage extends Vue{
     try {
       this.loading = true
       await this.$api.admin.musicSchool.updateMusicSchool(musicSchool)
+      this.$router.push('/admin/music_schools')
     } catch (e) {
       this.$message({
         message: this.$t('edit_music_school_error').toString(),
         type: 'error'
       })
     } finally {
-      this.loading = true
+      this.loading = false
     }
   }
 }

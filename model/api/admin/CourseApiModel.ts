@@ -7,5 +7,5 @@ export default interface CompositionApiModel {
     student: UserApiModel;
     semester: SemesterApiModel;
     instrument: InstrumentApiModel;
-    id: number;
+    id: number | null;
 }

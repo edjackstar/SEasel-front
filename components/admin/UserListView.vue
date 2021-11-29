@@ -4,7 +4,7 @@
       :border="false"
       :data="users"
       size="mini">
-      <el-table-column prop="name" :label="$t('user_list_name_label')" align="center">
+      <el-table-column prop="name" :label="$t('user_list_name_label')" align="left">
         <template v-slot="i">
           {{ users[i.$index].name }}
         </template>
@@ -21,7 +21,7 @@
       </el-table-column>
       <el-table-column prop="musicSchool" :label="$t('user_list_music_school_label')" align="center">
         <template v-slot="i">
-          {{ users[i.$index].musicSchool.name }}
+          {{ users[i.$index].music_school.name }}
         </template>
       </el-table-column>
       <el-table-column prop="action" :label="$t('user_list_action_label')" align="right" width="120px">

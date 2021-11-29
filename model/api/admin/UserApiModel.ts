@@ -4,8 +4,8 @@ export default interface UserApiModel {
     name: string;
     email:string;
     role: Role;
-    musicSchool: MusicSchoolApiModel;
-    id: number;
+    music_school: MusicSchoolApiModel;
+    id: number | null;
 }
 
 type Role = "ADMIN" | "STUDENT" | "TEACHER"

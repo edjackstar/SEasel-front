@@ -5,5 +5,5 @@ export default interface CompositionApiModel {
     name: string;
     instrument: InstrumentApiModel;
     difficulty: number;
-    id: number;
+    id: number | null;
 }

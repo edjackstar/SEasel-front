@@ -4,6 +4,11 @@
       {{$t('user_list_title')}}
     </div>
     <user-list-view :users="users" class="default-top-margin"/>
+    <div class="default-top-margin default-right-margin" style="display: flex; justify-content: flex-end;">
+      <el-button type="primary" @click="$router.push('/admin/users/add')" >
+        {{$t('user_list_add_btn')}}
+      </el-button>
+    </div>
   </div>
 </template>
 
@@ -18,7 +23,7 @@ import UserApiModel from '~/model/api/admin/UserApiModel'
     UserListView
   }
 })
-export default class StudentPage extends Vue{
+export default class UserPage extends Vue{
 
   users: UserApiModel[] = []
 

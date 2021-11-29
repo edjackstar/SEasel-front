@@ -1,4 +1,4 @@
 export default interface MusicSchoolApiModel {
     name: string;
-    id: number;
+    id: number | null;
 }

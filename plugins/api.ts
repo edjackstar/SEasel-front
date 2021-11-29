@@ -60,8 +60,8 @@ interface ApiAdminUser{
   getUserList(): Promise<UserAdminApiModel[]>
   getUser(userId: number): Promise<UserAdminApiModel>
   removeUser(userId: number): void
-  updateUser(user: UserAdminApiModel): void
-  addUser(user: UserAdminApiModel): void
+  updateUser(user: UserAdminApiModel, password: string, password2: string): void
+  addUser(user: UserAdminApiModel, password: string, password2: string): void
 }
 
 interface ApiAdminConcert{
@@ -117,8 +117,9 @@ export default (ctx:any, inject:any) => {
       },
       async setStudentConcert(studentId: number, selectedConcert: number){
         const body = {
-          concertId: selectedConcert
+          concert_id: selectedConcert
         }
+        console.log(studentId,selectedConcert)
         await $axios.post(`/api/student/${studentId}/recommend/`, body)
       },
       async getComposition(compositionId: number): Promise<CompositionApiModel> {
@@ -147,7 +148,7 @@ export default (ctx:any, inject:any) => {
           const body: MusicSchoolFormApiModel = {
             name: musicSchool.name
           }
-          await $axios.post(`/api/schools/${musicSchool.id}/`, body)
+          await $axios.put(`/api/schools/${musicSchool.id}/`, body)
         },
         async addMusicSchool(musicSchool: MusicSchoolApiModel) {
           const body: MusicSchoolFormApiModel = {
@@ -167,23 +168,25 @@ export default (ctx:any, inject:any) => {
         async removeUser(userId: number) {
           await $axios.delete(`/api/users/${userId}/`)
         },
-        async updateUser(user: UserAdminApiModel, password: string) {
+        async updateUser(user: UserAdminApiModel, password: string, password2: string) {
           const body: UserFormApiModel = {
             name: user.name,
             email: user.email,
             password: password,
+            password2: password2,
             role: user.role,
-            musicSchool: user.musicSchool.id
+            music_school: user.music_school.id
           }
-          await $axios.post(`/api/users/${user.id}/`, body)
+          await $axios.put(`/api/users/${user.id}/`, body)
         },
-        async addUser(user: UserAdminApiModel, password: string) {
+        async addUser(user: UserAdminApiModel, password: string, password2: string) {
           const body: UserFormApiModel = {
             name: user.name,
             email: user.email,
             password: password,
+            password2: password2,
             role: user.role,
-            musicSchool: user.musicSchool.id
+            music_school: user.music_school.id
           }
           await $axios.post(`/api/users/`, body)
         }
@@ -202,14 +205,14 @@ export default (ctx:any, inject:any) => {
         },
         async updateConcert(concert: ConcertAdminApiModel) {
           const body: ConcertFormApiModel = {
-            name: concert.name,
+            music_school: concert.music_school.id,
             date: concert.date
           }
-          await $axios.post(`/api/concerts/${concert.id}/`, body)
+          await $axios.put(`/api/concerts/${concert.id}/`, body)
         },
         async addConcert(concert: ConcertAdminApiModel) {
           const body: ConcertFormApiModel = {
-            name: concert.name,
+            music_school: concert.music_school.id,
             date: concert.date
           }
           await $axios.post(`/api/concerts/`, body)
@@ -228,21 +231,21 @@ export default (ctx:any, inject:any) => {
         },
         async updateSemester(semester: SemesterApiModel) {
           const body: SemesterFormApiModel = {
-            musicSchool: semester.musicSchool.id,
+            music_school: semester.music_school.id,
             number: semester.number,
-            count: semester.count,
-            minDifficult: semester.minDifficult,
-            maxDifficult: semester.maxDifficult
+            composition_count: semester.composition_count,
+            min_difficulty: semester.min_difficulty,
+            max_difficulty: semester.max_difficulty
           }
-          await $axios.post(`/api/semesters/${semester.id}/`, body)
+          await $axios.put(`/api/semesters/${semester.id}/`, body)
         },
         async addSemester(semester: SemesterApiModel) {
           const body: SemesterFormApiModel = {
-            musicSchool: semester.musicSchool.id,
+            music_school: semester.music_school.id,
             number: semester.number,
-            count: semester.count,
-            minDifficult: semester.minDifficult,
-            maxDifficult: semester.maxDifficult
+            composition_count: semester.composition_count,
+            min_difficulty: semester.min_difficulty,
+            max_difficulty: semester.max_difficulty
           }
           await $axios.post(`/api/semesters/`, body)
         },
@@ -262,7 +265,7 @@ export default (ctx:any, inject:any) => {
           const body: InstrumentFormApiModel = {
             name: instrument.name
           }
-          await $axios.post(`/api/instruments/${instrument.id}/`, body)
+          await $axios.put(`/api/instruments/${instrument.id}/`, body)
         },
         async addInstrument(instrument: InstrumentApiModel) {
           const body: InstrumentFormApiModel = {
@@ -289,7 +292,7 @@ export default (ctx:any, inject:any) => {
             instrument: composition.instrument.id,
             difficulty: composition.difficulty
           }
-          await $axios.post(`/api/compositions/${composition.id}/`, body)
+          await $axios.put(`/api/compositions/${composition.id}/`, body)
         },
         async addComposition(composition: CompositionAdminApiModel) {
           const body: CompositionFormApiModel = {
@@ -319,7 +322,7 @@ export default (ctx:any, inject:any) => {
             semester: course.semester.id,
             instrument: course.instrument.id
           }
-          await $axios.post(`/api/courses/${course.id}/`, body)
+          await $axios.put(`/api/courses/${course.id}/`, body)
         },
         async addCourse(course: CourseApiModel) {
           const body: CourseFormApiModel = {

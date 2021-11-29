@@ -1,20 +1,20 @@
 <template>
   <div>
-    <div class="title default-top-margin">{{ $t('add_music_school_title') }}</div>
+    <div class="title default-top-margin">{{ $t('add_instrument_title') }}</div>
     <el-form
       class="default-top-margin default-form-width default-left-margin"
-      :model="musicSchool"
+      :model="instrument"
       size="mini"
       label-width="140px">
-      <el-form-item prop="name" :label="$t('add_music_school_label_name')">
-        <el-input v-model="musicSchool.name" />
+      <el-form-item prop="name" :label="$t('add_instrument_label_name')">
+        <el-input v-model="instrument.name" />
       </el-form-item>
       <el-form-item>
         <el-button
           :loading="loading"
           type="primary"
           @click="submit">
-          {{ $t('add_music_school_btn_submit') }}
+          {{ $t('add_instrument_btn_submit') }}
         </el-button>
       </el-form-item>
     </el-form>
@@ -31,11 +31,8 @@ import MusicSchoolApiModel from '~/model/api/admin/MusicSchoolApiModel'
   layout: 'admin'
 })
 export default class AddMusicSchoolPage extends Vue{
-
-  @Ref('editMusicSchoolFormRef')
-  editMusicSchoolFormRef!: ElForm
   
-  musicSchool:MusicSchoolApiModel = {
+  instrument:MusicSchoolApiModel = {
     name: '',
     id: 0
   }
@@ -43,16 +40,16 @@ export default class AddMusicSchoolPage extends Vue{
   loading = false
 
   async submit() {
-    const musicSchool = this.musicSchool
-    if (this.loading || musicSchool ==null) return
+    const instrument = this.instrument
+    if (this.loading || instrument ==null) return
 
     try {
       this.loading = true
-      await this.$api.admin.musicSchool.addMusicSchool(musicSchool)
-      this.$router.push('/admin/music_schools')
+      await this.$api.admin.instrument.addInstrument(instrument)
+      this.$router.push('/admin/instruments')
     } catch (e) {
       this.$message({
-        message: this.$t('add_music_school_error').toString(),
+        message: this.$t('add_instrument_error').toString(),
         type: 'error'
       })
     } finally {
