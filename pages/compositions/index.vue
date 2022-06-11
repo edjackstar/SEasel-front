@@ -1,32 +1,31 @@
 <template>
   <div>
     <div class='title default-top-margin'>
-      {{$t('students_title')}}
+      {{$t('compositions_title')}}
     </div>
-    <student-list-view :students="students" class="default-top-margin"/>
+    <composition-list-view :compositions="compositions" class="default-top-margin"/>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator'
-import StudentListView from '~/components/StudentListView.vue'
-import StudentApiModel from '~/model/api/StudentApiModel'
-import UserApi from '~/api/UserApi'
+import CompositionListView from '~/components/CompositionListView.vue'
+import CompositionApiModel from '~/model/api/CompositionApiModel'
 
 @Component({
   layout: 'default',
   components: {
-    StudentListView
+    CompositionListView
   }
 })
 export default class HomePage extends Vue{
 
-  students: StudentApiModel[] = []
+  compositions: CompositionApiModel[] = []
 
   async mounted(){
     // console.log((await this.$axios.get('/api/teacher/students/')).data)
     try{
-      this.students = await this.$api.user.getStudents()
+      this.compositions = await this.$api.user.getCompositionList()
     }catch(e){
       
     }

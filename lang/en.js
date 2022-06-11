@@ -13,12 +13,19 @@ export default {
   menu_instruments: 'Instruments',
   menu_compositions: 'Compositions',
   menu_courses: 'Courses',
+  menu_students: 'Students',
 
   students_title: 'Students',
-
   students_list_name_label: 'Name',
   students_list_semester_label: 'Semester',
   students_list_instrument_label: 'Instrument',
+
+  compositions_title: 'Compositions',
+  compositions_list_name_label: 'Name',
+  compositions_list_author_label: 'Author',
+  compositions_list_average_mark_label: 'Average mark',
+
+  feedbacks_title: 'Comments',
 
   concerts_title: 'Student ',
   concerts_popover_title: 'To appoint',

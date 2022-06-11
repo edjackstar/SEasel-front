@@ -16,7 +16,7 @@
       </el-table-column>
       <el-table-column prop="semester" :label="$t('course_list_semester_label')" align="center">
         <template v-slot="i">
-          {{ courses[i.$index].semester.name }}
+          {{ courses[i.$index].semester.number }}
         </template>
       </el-table-column>
       <el-table-column prop="instrument" :label="$t('course_list_instrument_label')" align="center">

@@ -13,7 +13,7 @@
         <el-input v-model="composition.name" />
       </el-form-item>
       <el-form-item prop="insrument" :label="$t('add_composition_label_instrument')">
-        <el-select v-model="composition.insrument.id">
+        <el-select v-model="composition.instrument.id">
           <el-option
             v-for="instrument in instruments"
             :key="instrument.id"
@@ -39,8 +39,6 @@
 
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator'
-import {Ref} from "vue-property-decorator";
-import {ElForm} from "element-ui/types/form";
 import InstrumentApiModel from '~/model/api/admin/InstrumentApiModel'
 import CompositionApiModel from '~/model/api/admin/CompositionApiModel'
 
@@ -54,6 +52,7 @@ export default class StudentPage extends Vue{
   composition: CompositionApiModel = {
     name: '',
     author: '',
+    avg_mark: 0,
     difficulty: 0,
     instrument: {
       name: '',
@@ -65,7 +64,6 @@ export default class StudentPage extends Vue{
   loading = false
 
   async mounted(){
-    this.composition = await this.$api.admin.composition.getComposition(+this.$route.params.id)
     try{
       this.instruments = await this.$api.admin.instrument.getInstrumentList()
     }catch(e){

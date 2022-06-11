@@ -6,6 +6,7 @@ import UserApiModel from "~/model/api/UserApiModel"
 import UserAdminApiModel from "~/model/api/admin/UserApiModel"
 import CompositionApiModel from "~/model/api/CompositionApiModel"
 import CompositionAdminApiModel from "~/model/api/admin/CompositionApiModel"
+import UserCompositionAdminApiModel from "~/model/api/CompositionApiModel"
 import MusicSchoolApiModel from "~/model/api/admin/MusicSchoolApiModel"
 import SemesterApiModel from "~/model/api/admin/SemesterApiModel"
 import InstrumentApiModel from "~/model/api/admin/InstrumentApiModel"
@@ -17,6 +18,7 @@ import ConcertFormApiModel from "~/model/form/admin/ConcertFormApiModel"
 import CourseFormApiModel from "~/model/form/admin/CourseFormApiModel"
 import UserFormApiModel from "~/model/form/admin/UserFormApiModel"
 import InstrumentFormApiModel from "~/model/form/admin/InstrumentFormApiModel"
+import FeedbackApiModel from "~/model/api/FeedbackApiModel"
 
 declare module 'vue/types/vue' {
   interface Vue {
@@ -36,6 +38,8 @@ interface ApiUser {
   getComposition(compositionId: number): Promise<CompositionApiModel>
   getStudentAvailableConcerts(studentId: number): Promise<ConcertApiModel[]>
   getStudentCompositionRepetitions(studentId: number, compositionId: number): Promise<RepetitionApiModel[]> 
+  getCompositionList(): Promise<UserCompositionAdminApiModel[]>
+  getCompositionComments(compositionId: number): Promise<FeedbackApiModel[]>
 }
 
 interface ApiAdmin {
@@ -130,6 +134,12 @@ export default (ctx:any, inject:any) => {
       },
       async getStudentCompositionRepetitions(studentId: number, compositionId: number): Promise<RepetitionApiModel[]> {
         return (await $axios.get(`/api/student/${studentId}/${compositionId}/`)).data
+      },
+      async getCompositionList(): Promise<CompositionAdminApiModel[]> {
+        return (await $axios.get(`/api/compositions/`)).data
+      },
+      async getCompositionComments(compositionId: number): Promise<FeedbackApiModel[]> {
+        return (await $axios.get(`/api/compositions/${compositionId}/feedbacks`)).data
       },
     },
     admin: {

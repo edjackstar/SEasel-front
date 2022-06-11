@@ -14,19 +14,19 @@
           {{ semesters[i.$index].number }}
         </template>
       </el-table-column>
-      <el-table-column prop="count" :label="$t('semester_list_composition_count_label')" align="center">
+      <el-table-column prop="composition_count" :label="$t('semester_list_composition_count_label')" align="center">
         <template v-slot="i">
-          {{ semesters[i.$index].count }}
+          {{ semesters[i.$index].composition_count }}
         </template>
       </el-table-column>
-      <el-table-column prop="min_difficult" :label="$t('semester_list_min_difficulty_label')" align="center">
+      <el-table-column prop="min_difficulty" :label="$t('semester_list_min_difficulty_label')" align="center">
         <template v-slot="i">
-          {{ semesters[i.$index].min_difficult }}
+          {{ semesters[i.$index].min_difficulty }}
         </template>
       </el-table-column>
-      <el-table-column prop="max_difficult" :label="$t('semester_list_max_difficulty_label')" align="center">
+      <el-table-column prop="max_difficulty" :label="$t('semester_list_max_difficulty_label')" align="center">
         <template v-slot="i">
-          {{ semesters[i.$index].max_difficult }}
+          {{ semesters[i.$index].max_difficulty }}
         </template>
       </el-table-column>
       <el-table-column prop="action" :label="$t('semester_list_action_label')" align="right" width="120px">

@@ -37,7 +37,7 @@ export default class StudentListView extends Vue {
 
   selectStudent(row: any, _column: number, _event: any){
     console.log(row)
-    this.$router.push(this.localePath(`/student/${row.studentId}`))
+    this.$router.push(this.localePath(`/students/${row.studentId}`))
   }
 
 }

@@ -6,7 +6,7 @@
       size="mini">
       <el-table-column prop="time" :label="$t('repetitions_list_date_label')" align="center">
         <template v-slot="i">
-          {{ getDate(repetitions[i.$index].time) }}
+          {{ getDate(repetitions[i.$index].dateTime) }}
         </template>
       </el-table-column>
       <el-table-column prop="mark" :label="$t('repetitions_list_mark_label')" align="center">
@@ -36,7 +36,7 @@ export default class RepetitionListView extends Vue {
   repetitions!: RepetitionApiModel[]
 
   getDate(date: string): string{
-    return moment(date).format('DD.MM.yyyy HH:MM')
+    return moment(date.substring(0,28)).format('DD.MM.yyyy HH:mm')
   }
 
 }

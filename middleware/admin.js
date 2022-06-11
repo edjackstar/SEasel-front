@@ -3,6 +3,6 @@ export default ({ store, redirect }) => {
     return redirect('/login')
   } else {
     if(store.getters['user/getTokenData'].role!=="ADMIN")
-      return redirect('/')
+      return redirect('/students')
   }
 }

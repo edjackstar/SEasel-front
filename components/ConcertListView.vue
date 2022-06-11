@@ -25,7 +25,7 @@
           </el-table-column>
           <el-table-column prop="averageMark" :label="$t('concerts_list_average_mark_label')" align="center">
             <template v-slot="i">
-              {{ concert.compositions[i.$index].averageMark!==null? concert.compositions[i.$index].averageMark : "-" }}
+              {{ concert.compositions[i.$index].averageMark!==null? parseFloat(concert.compositions[i.$index].averageMark).toFixed(2) : "-" }}
             </template>
           </el-table-column>
         </el-table-column>
@@ -47,7 +47,7 @@ export default class ConcertListView extends Vue {
   concerts!: ConcertApiModel[]
 
   selectComposition(row: any, _column: number, _event: any, index: number){
-    this.$router.push(this.localePath(`/student/${this.$route.params.studentId}/${row.compositionId}`))
+    this.$router.push(this.localePath(`/students/${this.$route.params.studentId}/${row.compositionId}`))
   }
 
   @Watch('concerts')

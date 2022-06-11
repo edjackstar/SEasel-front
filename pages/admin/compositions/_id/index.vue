@@ -54,6 +54,7 @@ export default class StudentPage extends Vue{
   composition: CompositionApiModel = {
     name: '',
     author: '',
+    avg_mark: 0,
     difficulty: 0,
     instrument: {
       name: '',
